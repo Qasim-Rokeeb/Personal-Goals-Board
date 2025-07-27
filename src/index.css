@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom dark mode */
 body {
-  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;
+  @apply bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white;
 }
