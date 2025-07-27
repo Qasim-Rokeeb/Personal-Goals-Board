@@ -31,7 +31,7 @@ npm run dev
 
 ## 🌐 Live Site
 
-[https://qasimrokeeb-personal-goals-board.vercel.app](https://qasimrokeeb-personal-goals-board.vercel.app)
+[https://personal-goals-board.vercel.app](https://personal-goals-board.vercel.app)
 
 ## 📦 What's Next?
 
