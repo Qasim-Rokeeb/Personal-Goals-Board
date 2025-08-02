@@ -1,41 +1,63 @@
 import { motion } from "framer-motion";
 
+const statusColors = {
+  "Not Started": "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300",
+  "In Progress": "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300",
+  Completed: "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
+};
+
 export default function GoalItem({ goal, onUpdate, onDelete }) {
   return (
     <motion.div
       layout
-      className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded shadow"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      className="bg-white dark:bg-slate-800 rounded-xl shadow hover:shadow-lg transition-shadow p-5"
     >
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg font-bold">{goal.title}</h3>
-        <button onClick={() => onDelete(goal.id)} className="text-red-500">
+      <div className="flex justify-between items-start mb-2">
+        <h3 className="font-bold text-lg leading-tight break-all">{goal.title}</h3>
+
+        <button
+          onClick={() => onDelete(goal.id)}
+          className="ml-4 text-slate-400 hover:text-red-500 transition"
+          aria-label="Delete goal"
+        >
           🗑
         </button>
       </div>
-      <p className="text-sm mt-1 mb-2">
+
+      <p className="text-sm mb-3">
         Status:{" "}
-        <span className="font-semibold text-blue-600">{goal.status}</span>
+        <span
+          className={`px-2 py-0.5 rounded-full text-xs font-semibold ${statusColors[goal.status]}`}
+        >
+          {goal.status}
+        </span>
       </p>
-      <div className="flex gap-2">
+
+      <div className="flex flex-wrap gap-2 mb-4">
         {["Not Started", "In Progress", "Completed"].map((s) => (
           <button
             key={s}
             onClick={() => onUpdate(goal.id, s)}
-            className={`px-3 py-1 rounded text-sm ${
-              goal.status === s
+            className={`px-3 py-1 text-sm rounded-md transition
+              ${goal.status === s
                 ? "bg-blue-600 text-white"
-                : "bg-zinc-200 dark:bg-zinc-700"
-            }`}
+                : "bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600"}`}
           >
             {s}
           </button>
         ))}
       </div>
-      <ul className="mt-3 text-sm list-disc list-inside text-zinc-700 dark:text-zinc-300">
-        {goal.tasks.map((task, i) => (
-          <li key={i}>{task}</li>
-        ))}
-      </ul>
+
+      {goal.tasks.length > 0 && (
+        <ul className="space-y-1 text-sm list-disc list-inside text-slate-600 dark:text-slate-400">
+          {goal.tasks.map((task, i) => (
+            <li key={i}>{task}</li>
+          ))}
+        </ul>
+      )}
     </motion.div>
   );
 }

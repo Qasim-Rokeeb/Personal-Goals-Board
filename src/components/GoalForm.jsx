@@ -7,12 +7,15 @@ export default function GoalForm({ onAdd }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title) return;
+    if (!title.trim()) return;
 
     onAdd({
       id: Date.now(),
-      title,
-      tasks: tasks.split(",").map((t) => t.trim()),
+      title: title.trim(),
+      tasks: tasks
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean),
       status: "Not Started",
     });
 
@@ -25,22 +28,33 @@ export default function GoalForm({ onAdd }) {
       onSubmit={handleSubmit}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded"
+      className="bg-white dark:bg-slate-800 rounded-xl shadow p-6"
     >
-      <h2 className="font-semibold mb-2">Add New Goal</h2>
+      <h2 className="text-lg font-semibold mb-4">Add New Goal</h2>
+
+      <label className="block mb-1 text-sm font-medium">Goal title</label>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Goal title"
-        className="w-full mb-2 p-2 rounded bg-white dark:bg-zinc-700"
+        placeholder="e.g. Finish side project"
+        className="w-full mb-3 p-2 rounded-md bg-slate-100 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+        required
       />
+
+      <label className="block mb-1 text-sm font-medium">
+        Tasks (comma-separated)
+      </label>
       <input
         value={tasks}
         onChange={(e) => setTasks(e.target.value)}
-        placeholder="Comma-separated tasks"
-        className="w-full mb-2 p-2 rounded bg-white dark:bg-zinc-700"
+        placeholder="Deploy to Vercel, Write README, Tweet about it"
+        className="w-full mb-4 p-2 rounded-md bg-slate-100 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
       />
-      <button className="bg-blue-600 text-white px-4 py-2 rounded">
+
+      <button
+        type="submit"
+        className="px-4 py-2 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition"
+      >
         Add Goal
       </button>
     </motion.form>

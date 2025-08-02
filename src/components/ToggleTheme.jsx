@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 
 export default function ToggleTheme() {
-  const [dark, setDark] = useState(
-    () => localStorage.getItem("theme") === "dark"
-  );
+  const [dark, setDark] = useState(() => localStorage.theme === "dark");
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
+    const root = window.document.documentElement;
+    root.classList.toggle("dark", dark);
     localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
 
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="text-2xl"
-      title="Toggle Theme"
+      className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+      aria-label="Toggle theme"
     >
-      {dark ? "🌞" : "🌙"}
+      <span className="text-xl">{dark ? "🌞" : "🌙"}</span>
     </button>
   );
 }
