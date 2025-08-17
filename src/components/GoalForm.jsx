@@ -55,7 +55,7 @@ export default function GoalForm({ onAdd }) {
         type="submit"
         className="px-4 py-2 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition"
       >
-        Add Your New Goal
+        Add Your New Goal// To Track Your Progress
       </button>
     </motion.form>
   );
