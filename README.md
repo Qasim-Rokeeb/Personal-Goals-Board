@@ -29,9 +29,12 @@ npm install
 npm run dev
 ```
 
-## 🌐 Live Site
+## 🌐 Deployment
 
-[https://personal-goals-board.vercel.app](https://personal-goals-board.vercel.app)
+
+This project is deployed on [Vercel](https://vercel.com/) — [Live Link](https://personal-goals-board.vercel.app)
+
+
 
 ## 📦 What's Next?
 
