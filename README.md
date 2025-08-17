@@ -5,7 +5,7 @@ A productivity dashboard that helps you track weekly personal goals. You can:
 - Add custom goals and tasks
 - Assign progress status (Not Started, In Progress, Completed)
 - View progress with a bar chart
-- Enjoy dark/light mode
+- Enjoy dark/light mode with ease
 - Persistent data with localStorage
 
 ## 🚀 Tech Stack
