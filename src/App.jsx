@@ -24,7 +24,7 @@ export default function App() {
       <main className="max-w-4xl mx-auto px-4 py-8 md:py-12">
         <header className="flex items-center justify-between mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-            🎯 Personal Goals Board
+            🎯 Personal Goals Board - Track your goals 
           </h1>
           <ToggleTheme />
         </header>

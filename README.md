@@ -44,5 +44,5 @@ This project is deployed on [Vercel](https://vercel.com/) — [Live Link](https:
 
 ## 🙋‍♂️ About Me
 
-Built with ❤️ by [Qasim Rokeeb](https://x.com/qasim_rokeeb)
+Built with ❤️ by [Qasim Rokeeb](https://x.com/qasimrokeeb)
 ```
