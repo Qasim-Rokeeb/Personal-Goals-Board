@@ -41,6 +41,7 @@ This project is deployed on [Vercel](https://vercel.com/) — [Live Link](https:
 - Add monthly view toggle
 - Notifications/reminders
 - Progress streaks
+- Future upgrade coming
 
 ## 🙋‍♂️ About Me
 
