@@ -1,14 +1,23 @@
+
 import { Bar } from "react-chartjs-2";
 import { Chart, BarElement, CategoryScale, LinearScale, Tooltip } from "chart.js";
 Chart.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
-export default function ProgressChart({ goals }) {
-  const counts = goals.reduce(
-    (acc, g) => ({ ...acc, [g.status]: acc[g.status] + 1 }),
-    { "Not Started": 0, "In Progress": 0, Completed: 0 }
-  );
 
-  const data = {
+import { useMemo } from "react";
+
+export default function ProgressChart({ goals }) {
+  // Efficiently count goal statuses
+  const counts = useMemo(() => {
+    const c = { "Not Started": 0, "In Progress": 0, Completed: 0 };
+    for (const g of goals) {
+      if (c[g.status] !== undefined) c[g.status]++;
+    }
+    return c;
+  }, [goals]);
+
+  // Memoize chart data and options for performance
+  const data = useMemo(() => ({
     labels: ["Not Started", "In Progress", "Completed"],
     datasets: [
       {
@@ -17,14 +26,14 @@ export default function ProgressChart({ goals }) {
         borderRadius: 4,
       },
     ],
-  };
+  }), [counts]);
 
-  const options = {
+  const options = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
-  };
+  }), []);
 
   return (
     <section className="bg-white dark:bg-slate-800 rounded-xl shadow p-6">
