@@ -9,7 +9,7 @@ export default function ToggleTheme() {
   };
   const [dark, setDark] = useState(getInitialTheme);
 
-  // Update root class and localStorage when theme changes
+  // Update root class and localStorage when theme changes, side effect
   useEffect(() => {
     const root = window.document.documentElement;
     if (dark) {
