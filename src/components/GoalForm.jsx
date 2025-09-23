@@ -1,27 +1,34 @@
-import { useState } from "react";
+
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
 export default function GoalForm({ onAdd }) {
-  const [title, setTitle] = useState("");
-  const [tasks, setTasks] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title.trim()) return;
+  const [form, setForm] = useState({ title: "", tasks: "" });
 
-    onAdd({
-      id: Date.now(),
-      title: title.trim(),
-      tasks: tasks
-        .split(",")
-        .map((t) => t.trim())
-        .filter(Boolean),
-      status: "Not Started",
-    });
 
-    setTitle("");
-    setTasks("");
-  };
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (!form.title.trim()) return;
+      onAdd({
+        id: Date.now(),
+        title: form.title.trim(),
+        tasks: form.tasks
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean),
+        status: "Not Started",
+      });
+      setForm({ title: "", tasks: "" });
+    },
+    [form, onAdd]
+  );
 
   return (
     <motion.form
@@ -34,8 +41,9 @@ export default function GoalForm({ onAdd }) {
 
       <label className="block mb-1 text-sm font-medium">Goal title</label>
       <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        name="title"
+        value={form.title}
+        onChange={handleChange}
         placeholder="e.g. Finish side project"
         className="w-full mb-3 p-2 rounded-md bg-slate-100 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
         required
@@ -45,8 +53,9 @@ export default function GoalForm({ onAdd }) {
         Tasks (comma-separated)
       </label>
       <input
-        value={tasks}
-        onChange={(e) => setTasks(e.target.value)}
+        name="tasks"
+        value={form.tasks}
+        onChange={handleChange}
         placeholder="Deploy to Vercel, Write README, Tweet about it"
         className="w-full mb-4 p-2 rounded-md bg-slate-100 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
       />
@@ -56,6 +65,7 @@ export default function GoalForm({ onAdd }) {
         className="px-4 py-2 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition"
       >
         Add Your New Goal and track easily
+      </button>
     </motion.form>
   );
 }
