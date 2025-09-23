@@ -18,7 +18,7 @@ export default function GoalItem({ goal, onUpdate, onDelete }) {
   const statusColor = useMemo(() => STATUS_COLORS[goal.status], [goal.status]);
 
   return (
-    // Animated card for the goal
+    // Animated card for the goal section
     <motion.div
       layout
       initial={{ opacity: 0, scale: 0.95 }}
