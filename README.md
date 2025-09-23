@@ -81,6 +81,7 @@ Contributions, issues, and feature requests are welcome!
 3. Commit your changes (`git commit -m 'Add some feature'`)
 4. Push to the branch (`git push origin feature/YourFeature`)
 5. Open a pull request
+6. Done
 
 ---
 
