@@ -5,7 +5,7 @@
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-blue?logo=tailwindcss)
 
-An intuitive productivity dashboard to help you track and visualize your weekly personal goals.
+An intuitive productivity dashboard to help you track and visualize your weekly personal goals in an easy and fun manner.
 
 ## ✨ Features
 
